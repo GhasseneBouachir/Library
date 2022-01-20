@@ -1,0 +1,56 @@
+
+<section class="page-section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="cta-inner bg-faded text-center rounded">
+          <h2 class="section-heading mb-5">
+            <span class="section-heading-upper">Come On In</span>
+            <span class="section-heading-lower">Borrows Space</span>
+          </h2>
+          <div class="row">
+            <div class="col-10">
+              <table class=" table mb-3 mx-auto text-center">
+                <thead>
+                <tr class="inline-table d-flex">
+                  <th class="col-md-3">Title</th>
+                  <th class="col-md-2">Student</th>
+                  <th class="col-md-2">Exit date</th>
+                  <th class="col-md-3">Planned Entry Date</th>
+                  <th class="col-md-2"> Entry Date </th>
+                  <th class="col-md-3"> </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="inline-table d-flex" *ngFor="let brr of borrows" >
+                  <td class="col-md-3">{{brr.book.title}}</td>
+                  <td class="col-md-2">{{brr.student.firstName}} {{brr.student.lastName}} </td>
+                  <td class="col-md-2">{{brr.exitDate | date : 'shortDate'}}</td>
+                  <td class="col-md-3">{{brr.plannedEntryDate | date : 'shortDate'}}</td>
+                  <td class="col-md-2">
+                    <div *ngIf="brr.entryDate == null" style="background-color: orange;border-radius: 50px"> Waiting</div>
+                    {{brr.entryDate | date : 'shortDate'}}
+                  </td>
+                  <td  class="col-md-3">
+                    <div  style="display: inline-table;" class="intro-button mx-auto">
+                      <button class="btn btn-primary" (click)= OnUpdate(brr)>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="borrows.length==0">
+                  <td colspan="4"> No data to show</td>
+                </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
